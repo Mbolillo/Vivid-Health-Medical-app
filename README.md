@@ -8,7 +8,7 @@ In order to run the application successfully it is needed to run the following c
 2) gem install rails -v 5.2.3
 3) sudo yum install ImageMagick (This will allow doctors to upload prescriptions images for patients).
 4) Paste the “Health” app file inside the environment.
-5) Bundle install with the app
+5) Bundle install
 
 ![1](https://user-images.githubusercontent.com/38048846/128731143-f8df074b-0954-474e-9182-80a36831631f.png)
 ![2](https://user-images.githubusercontent.com/38048846/128731150-9c09c7d8-dbda-4aa8-ae5d-13457a4c8986.png)
