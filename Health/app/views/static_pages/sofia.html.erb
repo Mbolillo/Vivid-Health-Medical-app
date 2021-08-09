@@ -1,0 +1,24 @@
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="team">
+    <h1 class="w3-wide">Sofia</h1>
+
+    <img src="/Sofia.jpg" style="width:100%" class="rounded-circle border border-info"></p>
+
+    <p class="w3-opacity"><i>(Pediatrician)</i></p>
+    <p class="w3-justify">Dr. Sofia Johns is a pediatrician and pediatric emergency physician who joins PM Pediatrics as their Senior Medical Advisor. As the face of this cutting-edge organization providing specialized pediatric urgent care, she is responsible for sharing the wealth of expertise of the PM Pediatrics staff with patients and families everywhere.
+    Dr. Johns received her undergraduate degree from the University of Pennsylvania and her medical training at the Johns Hopkins University School of Medicine. After completing her pediatric residency at Hopkins, she moved to Washington, D.C. for a postdoctoral fellowship in pediatric emergency medicine at Children’s National Medical Center.</p>
+    <p class="w3-justify">She continued on the faculty at the George Washington University School of Medicine working as an attending physician and assistant division chief in the Emergency Medicine and Trauma Center at Children’s National for 15 years, and during that time obtained a master’s degree in education from the George Washington University School of Education.
+    Dr. Johns has extensive national and local media experience including TV, radio, online, and print. She has been a regular medical contributor on ABC News’ Good Morning America and has had multiple appearances as a medical expert on a variety of CNN and Discovery Health shows. </p></br>
+    <% if user_signed_in? %>
+        <% if current_user.person.type == "Patient" %>
+          <div class="btn btn-primary">
+              <%= link_to 'Book Appointment', new_patient_appointment_path(current_user.person) %>
+          </div>
+         <% end %>
+    <% else %>
+         <div class="btn btn-primary">
+          <%= link_to "Book Appointment", new_user_session_path, class: "nav-link" %>
+        </div>
+        <p class="w3-opacity" w3-right><i>(Requires Login)</i></p>
+
+    <% end %>
+</div>

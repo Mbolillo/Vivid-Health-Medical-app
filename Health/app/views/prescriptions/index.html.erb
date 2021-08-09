@@ -1,0 +1,51 @@
+<br /> <h2 class="w3-wide w3-center">PRESCRIPTIONS</h2><br />
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>Patient</th>
+      <th>Doctor</th>
+      <th>Medication1</th>
+      <th>Dose1</th>
+      <th>Quantity1</th>
+      <th>Frecuency1</th>
+      <th>Medication2</th>
+      <th>Dose2</th>
+      <th>Quantity2</th>
+      <th>Frecuency2</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prescriptions.each do |prescription| %>
+      <tr>
+        <td><%= prescription.patient.full_name %></td>
+        <td><%= prescription.doctor.full_name %></td>
+        <td><%= prescription.Medication1 %></td>
+        <td><%= prescription.Dose1 %></td>
+        <td><%= prescription.Quantity1 %></td>
+        <td><%= prescription.Frecuency1 %></td>
+        <td><%= prescription.Medication2 %></td>
+        <td><%= prescription.Dose2 %></td>
+        <td><%= prescription.Quantity2 %></td>
+        <td><%= prescription.Frecuency2 %></td>
+        <td><%= link_to 'Prescription File', prescription %></td>
+        <% if current_user.admin || current_user.person != nil && current_user.person.type == "Doctor"%>
+            <td><%= link_to 'Edit', edit_prescription_path(prescription) %></td>
+          <% end %>
+          <% if current_user.admin %>
+          <td><%= link_to 'Destroy', prescription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_user.person != nil && current_user.person.type == "Patient" %>
+  <div class="btn btn-primary">
+    <%= link_to 'New Prescription', new_patient_prescription_path(current_user.person) %>
+  </div>
+<% end %>

@@ -1,0 +1,40 @@
+<br /> <h2 class="w3-wide w3-center">PATIENTS</h2><br />
+
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Dob</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Gender</th>
+      <th>User</th>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.first_name %></td>
+        <td><%= patient.last_name %></td>
+        <td><%= patient.dob %></td>
+        <td><%= patient.address %></td>
+        <td><%= patient.phone %></td>
+        <td><%= Person.genders.key(patient.gender) %></td>
+        <td><%= patient.user_id %></td>
+        <td><%= link_to 'Show', patient %></td>
+        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Appointments', patient_appointments_path(patient) %></td>
+        <td><%= link_to 'Prescriptions', patient_prescriptions_path(patient) %></td>
+        <td><%= link_to 'Consultations', patient_consultations_path(patient) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

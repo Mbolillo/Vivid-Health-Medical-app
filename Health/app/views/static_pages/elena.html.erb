@@ -1,0 +1,26 @@
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="team">
+    <h1 class="w3-wide">Elena</h1>
+
+    <img src="/Elena.jpg" style="width:100%" class="rounded-circle border border-info"></p>
+
+    <p class="w3-opacity"><i>(General Practitioner)</i></p>
+    <p class="w3-justify">Dr Elena Fernandez has almost twenty years of experience, having graduated from NUI Galway in 1999. 
+    Her particular areas of interest are dermatology, child health and women’s health. In 2003 Michelle moved to London and worked in Hammersmith Hospital before starting the East London GP Vocational Training Scheme. 
+    She became a member of the Royal College of General Practitioners in 2004 and was based in teaching practices in Hackney, East London. Her work included teaching medical students 
+    from Barts and The London School of Medicine and GP registrar teaching. In 2007 Elena completed a postgraduate.</p>
+    <p class="w3-justify">She returned to Dublin in 2009 and has been working in different practices in Dublin 2 since then. 
+    In 2016 Elena completed a Masters in Healthcare Law and Ethics in RCSI, graduating with first class honours.</p></br>
+    <% if user_signed_in? %>
+        <% if current_user.person.type == "Patient" %>
+          <div class="btn btn-primary">
+              <%= link_to 'Book Appointment', new_patient_appointment_path(current_user.person) %>
+          </div>
+         <% end %>
+    <% else %>
+         <div class="btn btn-primary">
+          <%= link_to "Book Appointment", new_user_session_path, class: "nav-link" %>
+        </div>
+        <p class="w3-opacity" w3-right><i>(Requires Login)</i></p>
+
+    <% end %>
+</div>

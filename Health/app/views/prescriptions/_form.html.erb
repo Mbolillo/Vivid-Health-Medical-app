@@ -1,0 +1,40 @@
+<div class="container">
+<%= simple_form_for(@prescription, html: { multipart: true }) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.input :doctor_id, collection: Doctor.all, label_method: :full_name, value_method: :id, label: "Doctor", include_blank: true,
+        :input_html => { :onchange => "getDoctor(value)" }
+      %>
+      <%= f.input :Medication1, hint: "eg: Paracetamol" %>
+      <%= f.input :Dose1, hint: "eg: 500mg" %>
+      <%= f.input :Quantity1, hint: "eg: 1 tab" %>
+      <%= f.input :Frecuency1, hint: "eg: 3 times/d" %>
+      <%= f.input :Medication2, hint: "eg: Paracetamol" %>
+      <%= f.input :Dose2, hint: "eg: 500mg" %>
+      <%= f.input :Quantity2, hint: "eg: 1 tab" %>
+      <%= f.input :Frecuency2, hint: "eg: 3 times/d" %>
+      
+      <% if current_user.admin || current_user.person.type == "Doctor" %>
+        <%= f.input :prescription, accept: 'image/jpeg,image/gif,image/png' %>
+      <% end %>
+    </div></br>
+    
+    <div class="form">
+    <input class="btn btn-primary" type="submit" value="Submit" name="commit" align="right">
+    </div>
+  <% end %>
+</div>
+
+
+<script>
+  
+  $('#prescription_prescription').bind('change', function() {
+  var size_in_megabytes = this.files[0].size/1024/1024;
+  if (size_in_megabytes > 5) {
+    alert('Maximum file size is 5MB. Please choose a smaller file.');
+  }
+});
+  
+</script>

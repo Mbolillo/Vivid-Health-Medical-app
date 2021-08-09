@@ -1,0 +1,24 @@
+<br /> <h2 class="w3-wide w3-center"doctor.full_name>DOCTOR PROFILE</h2><br />
+
+<%= simple_form_for(@doctor) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :first_name, disabled: true %>
+    <%= f.input :last_name, disabled: true %>
+    <%= f.input :dob, disabled: true %>
+    <%= f.input :address, disabled: true %>
+    <%= f.input :phone, disabled: true %>
+    <%= f.input :gender, as: :radio_buttons, collection: [['0', 'female'], ['1', 'male']], label_method: :second, value_method: :first, disabled:true %>
+    <%= f.input :discipline, disabled: true %>
+    <%= f.input :hourly_rate, disabled: true %>
+    <%= f.input :bio, disabled: true %>
+  </div>
+<% end %>
+  <div class="btn btn-primary">
+    <%= link_to 'Edit Doctor', edit_doctor_path(@doctor) %>
+  </div>  
+
+
+

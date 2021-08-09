@@ -1,0 +1,30 @@
+<br /> <h2 class="w3-wide w3-center">CONSULTATIONS</h2><br />
+
+  <% @consultations.each do |consultation| %>
+    <hr>
+    <div class="row">
+      <div class="w3-col m10">
+        <blockquote>
+          <p><%= consultation.content %></p>
+          <% if current_user.admin || current_user.person.type == 'Doctor' %>
+              — <cite><a><%= consultation.patient.full_name %></a></cite>
+          <% end %>  
+        </blockquote>
+      </div>
+      
+      <div>
+       <% if current_user.admin %>
+        <%= link_to 'Show', consultation %>
+        <%= link_to 'Edit', edit_consultation_path(consultation) %>
+        <%= link_to 'Destroy', consultation, method: :delete, data: { confirm: 'Are you sure?' } %>
+       <% end %>
+      </div>
+    </div>
+  <% end %>
+<br>
+
+  <% if current_user.person != nil && current_user.person.type == "Patient" %>
+    <div class="btn btn-primary">
+      <%= link_to 'New Consultation', new_patient_consultation_path(current_user.person) %>  
+    </div>
+  <% end %>

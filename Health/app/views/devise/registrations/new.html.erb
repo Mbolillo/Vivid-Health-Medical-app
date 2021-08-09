@@ -1,0 +1,62 @@
+<br /> <h2 class="w3-wide w3-center">SIGN UP</h2><br />
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" }%>
+    <%= f.input :password,
+                required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "new-password" } %>
+                
+    
+    <%= f.simple_fields_for :person, resource.build_person do |p| %>
+      <%= p.input :first_name, required: true %>
+      <%= p.input :last_name, required: true %>
+      <%= p.input :dob, as: :date, html5: true, required: true %>
+      <%= p.input :address, required: true %>
+      <%= p.input :phone, required: true %>
+      <%= p.input :gender, as: :radio_buttons, collection: [['0', 'female'], ['1', 'male']], label_method: :second, value_method: :first, required: true %>
+      <%= p.input :type, as: :radio_buttons,
+        collection: [['Patient', 'Register as Patient'], ['Doctor', 'Register as Doctor']], :label_method => :second, :value_method => :first,
+        :input_html => { :onclick => "customFunction(value)",  :id => "type-radio-buttons"}, required: true
+      %>
+      
+      <div id="hide-inputs">
+        <%= p.input :discipline %>
+        <%= p.input :hourly_rate %>
+        <%= p.input :bio %>
+      </div>
+      
+    <% end %>
+  </div>
+  
+  <div class="col-sm-offset-4 col-sm-10">
+    <input class="btn btn-primary" type="submit" value="Sign up" name="commit">
+  </div>
+<% end %>
+
+<script>
+
+document.getElementById("type-radio-buttons").checked = true;
+customFunction('Patient');
+
+function customFunction(typ) {
+  console.log('here ' + typ);
+  if (typ == 'Doctor') { //male
+    document.getElementById("hide-inputs").style.display = 'block';
+  } else {
+    document.getElementById("hide-inputs").style.display = 'none';
+  }
+}
+
+function hide() {}
+
+</script>

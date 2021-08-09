@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Medication1: MyString
+  Dose1: MyString
+  Quantity1: MyString
+  Frecuency1: MyString
+  Medication2: MyString
+  Dose2: MyString
+  Quantity2: MyString
+  Frecuency2: MyString
+  patient_id: 1
+  doctor_id: 1
+
+two:
+  Medication1: MyString
+  Dose1: MyString
+  Quantity1: MyString
+  Frecuency1: MyString
+  Medication2: MyString
+  Dose2: MyString
+  Quantity2: MyString
+  Frecuency2: MyString
+  patient_id: 1
+  doctor_id: 1

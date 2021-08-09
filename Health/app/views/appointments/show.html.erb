@@ -1,0 +1,59 @@
+<br /> <h2 class="w3-wide w3-center"doctor.full_name>APPOINTMENT PROFILE</h2><br />
+
+
+<div class="container">
+  <%= simple_form_for(@appointment) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  
+    <div class="form-inputs">
+      <%= f.input :doctor_id, collection: Doctor.all, label_method: :full_name, value_method: :id, label: "Doctor", include_blank: true,
+        :input_html => { :onchange => "getDoctor(value)", disabled: true }
+      %>
+      <%= f.input :appointment_date, as: :date, html5: true, disabled: true %>
+      <%= f.input :appointment_time, as: :time, html5: true, disabled: true %>
+      <%= f.input :total_hours, input_html: { min: '1', max: '4', :onkeyup => "calculateAmmount(value)", disabled: true } %>
+    </div>
+    
+    
+     <p>Hourly Rate: <label id="labelHR"></label></p>
+     </br>
+     <strong><p align="right">Total Amount: <label id="labelAmount">0.00</label></p></strong>
+     <br/>
+    
+    <div class="btn btn-primary">
+      <%= link_to 'Edit', edit_appointment_path(@appointment) %>
+    </div>
+  <% end %>
+</div>
+  
+
+
+<script>
+
+var hourlyRate = 0;
+
+function getDoctor(docID) {
+  $.ajax({
+    url: "/people/" + docID,
+    type: "GET",
+    dataType: "json",
+    success: function(result) {
+      hourlyRate = result.hourly_rate;
+      document.all('labelHR').innerHTML = parseFloat(hourlyRate).toFixed(2);
+    },
+    error: function() {
+      alert("Ajax error!")
+    }
+  });
+}
+
+function calculateAmmount(hours) {
+  var ammount = 0;
+  if (hours) {
+    ammount = hours*hourlyRate;  
+  }
+  document.all('labelAmount').innerHTML = parseFloat(ammount).toFixed(2);
+}
+  
+</script>

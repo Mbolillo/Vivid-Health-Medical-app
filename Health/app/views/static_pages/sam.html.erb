@@ -1,0 +1,25 @@
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="team">
+    <h1 class="w3-wide">Sam</h1>
+
+    <img src="/Sam.jpg" style="width:100%" class="rounded-circle border border-info"></p>
+
+    <p class="w3-opacity"><i>(Physiotherapist)</i></p>
+    <p class="w3-justify">Dr Sam Hernandez obtained his BSc. (Hons) in Physiotherapy in 2013.  He joined PhysioCare in 2016 having worked for the NHS in the UK where he gained experience in his chosen specialty.  
+    He largely rotated between primary care musculoskeletal physiotherapy and secondary care orthopedics though, he also has experience in elderly fall prevention and stroke rehabilitation.In addition to this, he was involved in the London 2012 games and has worked with a number of sports teams.  
+    Since joining PhysioCare, he has trained in dry needling, bio mechanics and spinal manipulation.</p>  
+     <p class="w3-justify">He believes the best way to prevent the recurrence of an injury, is often, the correct combination of manual therapy and exercise.
+    Professionally, he is registered with the Irish Society of Chartered Physiotherapists (ISCP), The Health & Care Professions Council (HCPC). He is an active member of the association of Foot & Ankle Physiotherapists (AFAP) and is qualified with the Chartered Physiotherapist in Musculoskeletal Therapy (CMPT).</p></br>
+    <% if user_signed_in? %>
+        <% if current_user.person.type == "Patient" %>
+          <div class="btn btn-primary">
+              <%= link_to 'Book Appointment', new_patient_appointment_path(current_user.person) %>
+          </div>
+         <% end %>
+    <% else %>
+         <div class="btn btn-primary">
+          <%= link_to "Book Appointment", new_user_session_path, class: "nav-link" %>
+        </div>
+        <p class="w3-opacity" w3-right><i>(Requires Login)</i></p>
+
+    <% end %>
+</div>
